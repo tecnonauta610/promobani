@@ -201,6 +201,21 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Gmail_Faenza.svg/2000px-Gmail_Faenza.svg.png" alt="WhatsApp logo" class="whatsapp-logo">
         gmail
       </a>
+        <div class="form-container" id="formContainer">
+  <h2>Contacto</h2>
+  <input type="text" id="name" placeholder="Nombre" required>
+  <input type="text" id="subject" placeholder="Asunto" required>
+  <textarea id="comment" rows="4" placeholder="Comentario..." required></textarea>
+  <button onclick="sendForm()">Enviar</button>
+</div>
+
+<script>
+  function sendForm() {
+    alert("Formulario enviado. ¡Gracias!");
+    document.getElementById("formContainer").reset();
+  }
+</script>
+
         <div class="content">
   <!-- Tu contenido principal aquí -->
 
