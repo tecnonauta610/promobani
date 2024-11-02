@@ -1,9 +1,8 @@
-<html>
-  <head>
-    <base href="https://ecnonauta385.github.io/catalogostecnonautabaninet.cu/">
+<html><head><base href="https://ecnonauta385.github.io/catalogostecnonautabaninet.cu/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TecnoNauta - Inicio</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@latest/dist/email.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
@@ -14,19 +13,24 @@
     min-height: 100vh;
     background-color: #000;
     color: #00FFFF;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    width: 100%;
   }
   .background {
-    background-image: url('https://i.ibb.co/8Pjfbdx/Screenshot-20241031-212136-Chrome.jpg');
+    background-image: url('https://i.ibb.co/JQxFVZC/wp14428876.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
   header {
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 1rem;
+    padding: 0.5rem;
+    min-height: auto;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -52,14 +56,15 @@
   nav a:hover {
     background-color: rgba(0, 255, 255, 0.2);
   }
-  .content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    text-align: center;
-  }
+    .content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 2rem 6rem 2rem; /* Increased bottom padding */
+      text-align: center;
+    }
+
   h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
@@ -90,144 +95,352 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-out;
+    pointer-events: none;
   }
   .service-content.active {
     max-height: 1000px;
     transition: max-height 0.5s ease-in;
+    pointer-events: auto;
   }
-  .cta-button {
-    background-color: #00FFFF;
-    color: #000;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-  .cta-button:hover {
-    background-color: #00CCCC;
-    transform: scale(1.05);
-  }
-  .whatsapp-logo {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-  }
+  
   footer {
     background-color: rgba(0, 0, 0, 0.7);
     color: #00FFFF;
     text-align: center;
-    padding: 1rem;
-    margin-top: auto;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    font-size: 0.9rem;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #00FFFF;
+    background: rgba(0, 0, 0, 0.7);
+    color: #00FFFF;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .submit-button {
+    background-color: #00FFFF;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .submit-button:active {
+    transform: scale(0.95);
+    background-color: #008B8B;
+  }
+
+  .submit-button:hover {
+    background-color: #00CCCC;
+  }
+
+  .form-submitted {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .form-submitted .submit-button {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  #formulario.service-content.active {
+    pointer-events: initial;
+  }
+
+  #contactForm {
+    pointer-events: auto;
+  }
+
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    header {
+      padding: 0.3rem;
+    }
+  
+    nav a {
+      display: inline-block;
+      margin: 0.3rem;
+      padding: 0.5rem;
+      background-color: rgba(0, 255, 255, 0.1);
+      border: 1px solid #00FFFF;
+      border-radius: 25px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+    }
+
+    .content {
+      padding: 1rem 1rem 5rem 1rem;
+    }
+
+    footer {
+      padding: 0.3rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .visitor-counter {
+    position: fixed;
+    left: 20px;
+    bottom: 80px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #00FFFF;
+    color: #00FFFF;
+    z-index: 1000;
+  }
+
+  .social-share {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .social-button {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #00FFFF;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: #00FFFF;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .social-button:hover {
+    background: #00FFFF;
+    color: #000;
+  }
+
+  .news-section {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #00FFFF;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .news-item {
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    padding: 10px 0;
+  }
+
+  .news-date {
+    font-size: 0.8em;
+    color: rgba(0, 255, 255, 0.7);
   }
 </style>
 <script>
-  function toggleService(id) {
+  (function() {
+    emailjs.init("mFH-Tziqc62kok1kS");
+  })();
+
+  function toggleService(id, event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     var content = document.getElementById(id);
     content.classList.toggle('active');
   }
-</script>
-  </head>
-  <body>  
-<div class="background">    
-  <header>      
-    <span class="logo">TecnoNauta</span>      
-    <nav>        
-      <a href="https://chat.whatsapp.com/HiTwQdsibfYKpbLqmYOs7D" class="cta-button" style="font-size: 10px; width: 80px; height: 20px; padding: 3px; border-radius: 3px;">        
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" class="whatsapp-logo">        
-        whasapp Grupo    
-      </a>
 
+  function detectDevice() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(userAgent)) {
+      return "Android";
+    }
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "iOS";
+    }
+    if (/Windows NT/.test(userAgent)) {
+      return "Windows";
+    }
+    if (/Macintosh/.test(userAgent)) {
+      return "MacOS";
+    }
+    return "Desconocido";
+  }
+
+  function sendEmail(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    var submitButton = e.target.querySelector('.submit-button');
+    submitButton.disabled = true;
+    
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var device = detectDevice();
+
+    var templateParams = {
+      from_name: name,
+      from_email: email,
+      reply_to: email,
+      message: message,
+      device: device,
+      to_name: "TecnoNauta",
+      to_email: "tecnonauta.net@gmail.com"
+    };
+
+    emailjs.send("service_o93oawf", "template_tqsfh3p", templateParams)
+      .then(function(response) {
+        alert("¡Gracias por comentar!");
+        document.getElementById("contactForm").reset();
+        submitButton.disabled = false;
+      }, function(error) {
+        alert("Error al enviar el mensaje: " + JSON.stringify(error));
+        submitButton.disabled = false;
+      });
+
+    return false;
+  }
+
+  function share(platform) {
+    const url = window.location.href;
+    const text = "¡Descubre los servicios tecnológicos de TecnoNauta!";
+    
+    if (platform === 'facebook') {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    } else if (platform === 'whatsapp') {
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+    }
+  }
+
+  window.addEventListener('load', () => {
+    let count = localStorage.getItem('visitorCount') || 0;
+    count = parseInt(count) + 1;
+    localStorage.setItem('visitorCount', count);
+    document.getElementById('visitorCount').textContent = count;
+  });
+</script>
+</head>
+<body>
+  <div class="background">
+    <header>
+      <span class="logo">TecnoNauta</span>
+      <nav>
+        <a href="https://chat.whatsapp.com/HiTwQdsibfYKpbLqmYOs7D" style="display: flex; align-items: center; gap: 8px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" style="width: 20px; height: 20px;">
+          Entrar a grupo de WhatsApp
+        </a>
       </nav>
     </header>
     <div class="content">
-      <h2>TecnoNauta Tu Mejor Opción</h2>
+      <h1>Bienvenido a TecnoNauta</h1>
+      <div class="news-section">
+        <h2>🔥 Novedades</h2>
+        <div class="news-item">
+          <div class="news-date">4 de Noviembre 2024</div>
+          <p>¡NUEVOS PRECIOS! 💥 ¡Aprovecha nuestras tarifas antes que suban!</p>
+        </div>
+        <div class="news-item">
+          <div class="news-date">2 Noviembre 2024</div>
+          <p>¡OFERTA! 🚀 Monitor Profesional para Copiado de Memorias USB - ¡Máxima Velocidad y Control!</p>
+        </div>
+      </div>
+      <div class="social-share">
+        <button class="social-button" onclick="share('facebook')">Compartir en Facebook</button>
+        <button class="social-button" onclick="share('whatsapp')">Compartir en WhatsApp</button>
+      </div>
       <div class="service-container">
-        <div class="service" onclick="toggleService('informaticos')">
+        <div class="service" onclick="toggleService('informaticos', event)">
           <h2>Servicios Informáticos</h2>
           <div id="informaticos" class="service-content">
-            <p>¡Servicios Tecnicos</p>
+            <p>¡Bienvenidos a TecnoNauta!</p>
             <p>¿Necesitas ayuda con tu dispositivo Android? ¡Estamos aquí para ayudarte! Ofrecemos los siguientes servicios:</p>
             <ul>
               <li>Eliminación de cuentas de Google (FRP)</li>
-              <li>Eliminación de bloqueos de pantalla en Android</li>
+              <li>Eliminación de bloqueos de pantalla en PC</li>
               <li>Instalación de sistemas operativos</li>
               <li>Instalación de antivirus y paquetes Office</li>
-              <li>Eliminación de contraseñas en pc sin Fornatear</li>
             </ul>
+            <p>Y para iPhone:</p>
             <ul>
+              <li>Creación de cuentas de iCloud</li>
+              <li>Configuración de VPN</li>
             </ul>
             <p>No realizamos trabajos de hardware, pero garantizamos servicios rápidos y eficientes para tus necesidades tecnológicas.</p>
             <p>💳 Aceptamos pagos por transferencia y en efectivo.</p>
             <p>¡Confía en TecnoNauta para resolver tus problemas tecnológicos con calidad y rapidez!</p>
           </div>
         </div>
-        <div class="service" onclick="toggleService('audiovisuales')">
-        <p>Otros Servicios Y Precios</p>
+        <div class="service" onclick="toggleService('precios', event)">
+          <h2>Lista de Precios</h2>
+          <div id="precios" class="service-content">
+            <ul style="list-style-type: none; padding: 0;">
+              <li>📀 Grabación de memorias: 5 CUP por GB</li>
+              <li>💻 Instalación sistema operativo Windows: 600 CUP</li>
+              <li>🔐 Recuperación de contraseñas Windows (sin reinstalar): 300 CUP</li>
+              <li>📱 FRP cuentas Google: 500 CUP</li>
+              <li>🛡️ Instalación Antivirus: 200 CUP</li>
+              <li>📊 Instalación paquete Office: 200 CUP</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service" onclick="toggleService('audiovisuales', event)">
+          <h2>Servicios de Grabaciones Audiovisuales</h2>
           <div id="audiovisuales" class="service-content">
             <p>En TecnoNauta, ofrecemos servicios de grabación de contenidos audiovisuales de alta calidad:</p>
             <ul>
               <li>Series</li>
               <li>Novelas</li>
               <li>Películas</li>
-            </ul>
-            <div class="service" onclick="toggleService('Precios')">
-          <p><h2>Precios De Servicios</h2></p>
-          <div id="Precios" class="service-content">
-            <p>Tenemos Exlentes Precios:</p>
-            <ul>
-          </div>
-              <li>Grabación de memorias: 5 CUP por GB</li>
-              <li>Instalación sistema operativo Windows: 600 CUP</li>
-              <li>Recuperación de contraseñas Windows (sin reinstalar): 300 CUP</li>
-              <li>FRP cuentas Google: 500 CUP</li>
-              <li>Instalación Antivirus: 200cup</li>
-            <li>Instalación paquete Office: 200 CUP</li>
+              <li>Documentales</li>
             </ul>
           </div>
         </div>
+        <div class="service" onclick="toggleService('formulario', event)">
+          <h2>Formulario de Contacto</h2>
+          <div id="formulario" class="service-content">
+            <form id="contactForm" onsubmit="sendEmail(event)" onclick="event.stopPropagation()">
+              <div class="form-group">
+                <input type="text" id="name" placeholder="Nombre" required>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <textarea id="message" placeholder="Comentario" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="submit-button">Enviar</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <a href="https://wa.me/+5356639178?text=Hola%20Necesito%20alguno%20de%20sus%20servicios" class="cta-button">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" class="whatsapp-logo">
-        Contacto
-      </a>
-      <a href="mailto:tecnonauta.net@gmail.com" class="cta-button">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Gmail_Faenza.svg/2000px-Gmail_Faenza.svg.png" alt="WhatsApp logo" class="whatsapp-logo">
-        gmail
-      </a>
-    <div class="content">
-  <!-- Tu contenido principal aquí -->
-
-  <footer class="footer">
-    <p>&copy; 2024 TecnoNauta. Todos los derechos reservados.</p>
-  </footer>
-</div>
-
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
-
-  .content {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
-    text-align: center;
-    padding: 10px 0;
-  }
-</style>
+      
+    </div>
+    <footer>
+      <p>&copy; 2024 TecnoNauta. Todos los derechos reservados.</p>
+    </footer>
+    <div class="visitor-counter">
+      Visitantes: <span id="visitorCount">0</span>
+    </div>
+  </div>
 </body></html>
