@@ -205,7 +205,7 @@
   .visitor-counter {
     position: fixed;
     left: 20px;
-    bottom: 80px;
+    bottom: 150px;
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
     border-radius: 5px;
@@ -254,6 +254,28 @@
   .news-date {
     font-size: 0.8em;
     color: rgba(0, 255, 255, 0.7);
+  }
+
+  .whatsapp-float {
+    position: fixed;
+    left: 200px; /* Move it to the right of visitor counter */
+    bottom: 150px; /* Keep it at same height as visitor counter */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #00FFFF;
+    color: #00FFFF;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .whatsapp-float:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
   }
 </style>
 <script>
@@ -347,8 +369,9 @@
       <span class="logo">TecnoNauta</span>
       <nav>
         <a href="https://chat.whatsapp.com/HiTwQdsibfYKpbLqmYOs7D" style="display: flex; align-items: center; gap: 8px;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" style="width: 20px; height: 20px;">
-          Entrar a grupo de WhatsApp
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" style="width: 25px; height: 25px;">
+      Grupo WhatsApp
+
         </a>
       </nav>
     </header>
@@ -362,7 +385,7 @@
         </div>
         <div class="news-item">
           <div class="news-date">2 Noviembre 2024</div>
-          <p>¡OFERTA! 🚀 Erramienta para Monitoreo para Los Que Llenan Memorias USB - ¡Máxima Velocidad y Control!</p>
+          <p>¡OFERTA! 🚀 Monitor Profesional para Copiado de Memorias USB - ¡Máxima Velocidad y Control!</p>
         </div>
       </div>
       <div class="social-share">
@@ -442,5 +465,9 @@
     <div class="visitor-counter">
       Visitantes: <span id="visitorCount">0</span>
     </div>
+    <a href="https://wa.me/+5356639178?text=Hola, me gustaría conocer las ofertas disponibles" class="whatsapp-float">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" style="width: 25px; height: 25px;">
+      Contactar
+    </a>
   </div>
 </body></html>
