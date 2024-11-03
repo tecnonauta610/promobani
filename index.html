@@ -202,18 +202,6 @@
     }
   }
 
-  .visitor-counter {
-    position: fixed;
-    left: 20px;
-    bottom: 150px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #00FFFF;
-    color: #00FFFF;
-    z-index: 1000;
-  }
-
   .social-share {
     display: flex;
     gap: 10px;
@@ -258,7 +246,7 @@
 
   .whatsapp-float {
     position: fixed;
-    left: 200px; /* Move it to the right of visitor counter */
+    left: 20px; /* Updated left position since visitor counter is gone */
     bottom: 150px; /* Keep it at same height as visitor counter */
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
@@ -354,13 +342,6 @@
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
     }
   }
-
-  window.addEventListener('load', () => {
-    let count = localStorage.getItem('visitorCount') || 0;
-    count = parseInt(count) + 1;
-    localStorage.setItem('visitorCount', count);
-    document.getElementById('visitorCount').textContent = count;
-  });
 </script>
 </head>
 <body>
@@ -404,7 +385,10 @@
               <li>Instalación de sistemas operativos</li>
               <li>Instalación de antivirus y paquetes Office</li>
             </ul>
-               
+            <p>Y para iPhone:</p>
+            <ul>
+              <li>Creación de cuentas de iCloud</li>
+              <li>Configuración de VPN</li>
             </ul>
             <p>No realizamos trabajos de hardware, pero garantizamos servicios rápidos y eficientes para tus necesidades tecnológicas.</p>
             <p>💳 Aceptamos pagos por transferencia y en efectivo.</p>
@@ -459,9 +443,6 @@
     <footer>
       <p>&copy; 2024 TecnoNauta. Todos los derechos reservados.</p>
     </footer>
-    <div class="visitor-counter">
-      Visitantes: <span id="visitorCount">0</span>
-    </div>
     <a href="https://wa.me/+5356639178?text=Hola, me gustaría conocer las ofertas disponibles" class="whatsapp-float">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo" style="width: 25px; height: 25px;">
       Contactar
