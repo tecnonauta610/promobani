@@ -34,6 +34,8 @@ body {
   background-attachment: fixed !important;
   position: relative;
   overflow-x: hidden;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 .header {
@@ -42,8 +44,10 @@ body {
   color: white;
   padding: 1rem;
   text-align: center;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   border-bottom: 1px solid var(--primary);
 }
@@ -63,6 +67,8 @@ body {
   position: relative;
   z-index: 2;
   background: transparent;
+  padding-top: 70px;
+  margin-top: 0;
 }
 
 @keyframes slideIn {
