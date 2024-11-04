@@ -43,7 +43,7 @@ body {
   background: rgba(0, 2, 18, 0.9);
   backdrop-filter: blur(10px);
   color: white;
-  padding: 1rem 2rem; /* Added more horizontal padding */
+  padding: 1rem 1.5rem; /* Reduce horizontal padding slightly */
   text-align: center;
   position: fixed;
   top: 0;
@@ -59,14 +59,28 @@ body {
 .header-content {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem; /* Reduced gap */
+  flex-wrap: nowrap; /* Prevent wrapping */
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.copywizard-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--primary);
-  text-shadow: 0 0 10px var(--primary);
+  text-decoration: none;
+  font-size: 0.85rem; /* Slightly smaller font */
+  padding: 0.3rem 0.6rem; /* Slightly reduced padding */
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  margin-right: 0.3rem; /* Reduced margin */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.copywizard-button:hover {
+  background: var(--primary);
+  color: var(--dark);
 }
 
 .group-button {
@@ -75,16 +89,26 @@ body {
   gap: 0.5rem;
   color: var(--primary);
   text-decoration: none;
-  font-size: 0.9rem;
-  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem; /* Slightly smaller font */
+  padding: 0.3rem 0.6rem; /* Slightly reduced padding */
   border: 1px solid var(--primary);
   border-radius: 20px;
   transition: all 0.3s ease;
+  margin-left: 0.3rem; /* Reduced margin */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .group-button:hover {
   background: var(--primary);
   color: var(--dark);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary);
+  margin-right: 0.5rem; /* Reduced margin after logo */
 }
 
 .main-content {
@@ -464,6 +488,20 @@ body {
   .whatsapp-float {
     bottom: 120px; /* Move even higher on mobile */
   }
+
+  .header-content {
+    gap: 0.3rem;
+  }
+
+  .logo {
+    margin-right: 0.3rem;
+  }
+  
+  .copywizard-button,
+  .group-button {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.75rem;
+  }
 }
 
 .whatsapp-float {
@@ -492,6 +530,18 @@ body {
 <header class="header">
   <div class="header-content">
     <div class="logo">Tecnonauta</div>
+    
+    <a href="https://tecnonauta610.github.io/infoQR/" 
+       target="_blank" 
+       class="copywizard-button">
+      <img src="https://i.ibb.co/qDqf4CN/spy-96975.png" 
+           alt="spy icon" 
+           width="16" 
+           height="16" 
+           style="filter: invert(1);">
+      CopyWizard
+    </a>
+    
     <a href="https://chat.whatsapp.com/HiTwQdsibfYKpbLqmYOs7D" 
        target="_blank" 
        class="group-button">
@@ -611,13 +661,13 @@ body {
       <div class="service-icon">💾</div>
       <h3>Servicios y Tarifas</h3>
       <ul>
-        <li>📀 Grabación de memorias: 2cup por ficheros</li>
-        <li>💻 Instalación sistema operativo Windows: 800cup CUP</li>
-        <li>🔐 Recuperación de contraseñas Windows (sin reinstalar): 500cup CUP</li>
-        <li>📱 FRP cuentas Google: 700cup CUP</li>
+        <li>📀 Grabación de memorias: 2 CUP por ficheros</li>
+        <li>💻 Instalación sistema operativo Windows: 800 CUP</li>
+        <li>🔐 Recuperación de contraseñas Windows (sin reinstalar): 500 CUP</li>
+        <li>📱 FRP cuentas Google: 700 CUP</li>
         <li>🛡️ Instalación Antivirus: 200 CUP</li>
-        <li>📊 Instalación paquete Office: 300cup CUP</li>
-        <li>📦Paquete Semanal 200CUP</li>
+        <li>📊 Instalación paquete Office: 300 CUP</li>
+        <li>📦 Paquete Semanal: 200 CUP</li>
       </ul>
     </div>
   </div>
@@ -665,14 +715,22 @@ body {
 </div>
 
 <div class="notification-dropdown">
-  <div class="notification-item">
-    <div class="notification-title">¡Nuevos Precios Hoy !</div>
-    <p>Grabación de memorias: 2cup por ficheros , Instalación sistema operativo Windows: 800cup CUP , Recuperación de contraseñas Windows (sin reinstalar): 500cup CUP , FRP cuentas Google: 700cup CUP ,Instalación Antivirus: 200 CUP ,Instalación paquete Office: 300cup CUP , Paquete Semanal 200CUP    ¡Consulta las nuevas tarifas! 
-  </div>
+    <div class="notification-item">
+      <div class="notification-title">¡Nuevos Precios Hoy!</div>
+      <p>Grabación de memorias: 2 CUP por ficheros<br>
+         Instalación sistema operativo Windows: 800 CUP<br>
+         Recuperación de contraseñas Windows (sin reinstalar): 500 CUP<br>
+         FRP cuentas Google: 700 CUP<br>
+         Instalación Antivirus: 200 CUP<br>
+         Instalación paquete Office: 300 CUP<br>
+         Paquete Semanal: 200 CUP<br>
+         ¡Consulta las nuevas tarifas!</p>
+    </div>
+
   
     <div class="notification-item">
-      <div class="notification-title">¡ofertaEspecial🔥copyWizard</div>
-      <p>¡genera facturas y controla la capacidad copiada cantiad de ficheros copiados!costo Solo por 50 CUP. 
+      <div class="notification-title">¡ofertaEspecial🔥copyWizard!</div>
+      <p>¡Genera facturas y controla la capacidad copiada, cantidad de ficheros copiados! Solo por 50 CUP. 
         <a href="https://tecnonauta610.github.io/infoQR/" 
            target="_blank" 
            style="color: var(--primary); text-decoration: underline; display: block; margin-top: 5px;">
