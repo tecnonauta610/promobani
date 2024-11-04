@@ -36,20 +36,30 @@ body {
   overflow-x: hidden;
   background-position: center !important;
   background-repeat: no-repeat !important;
+  padding-bottom: 100px; /* Add extra padding at bottom */
 }
 
 .header {
   background: rgba(0, 2, 18, 0.9);
   backdrop-filter: blur(10px);
   color: white;
-  padding: 1rem;
+  padding: 1rem 2rem; /* Added more horizontal padding */
   text-align: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  border-bottom: 1px solid var(--primary);
+  z-index: 2000; /* Increased z-index to ensure visibility */
+  height: 60px; /* Set explicit height */
+  display: flex;
+  justify-content: space-between; /* Changed from center to space-between */
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo {
@@ -57,6 +67,24 @@ body {
   font-weight: bold;
   color: var(--primary);
   text-shadow: 0 0 10px var(--primary);
+}
+
+.group-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.group-button:hover {
+  background: var(--primary);
+  color: var(--dark);
 }
 
 .main-content {
@@ -67,7 +95,7 @@ body {
   position: relative;
   z-index: 2;
   background: transparent;
-  padding-top: 70px;
+  padding-top: 80px; /* Increased from 70px to 80px */
   margin-top: 0;
 }
 
@@ -80,6 +108,19 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* Add/modify in the CSS section */
+@keyframes bellShake {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(5deg); }
+  30% { transform: rotate(-5deg); }
+  45% { transform: rotate(4deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(2deg); }
+  85% { transform: rotate(-2deg); }
+  92% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
 }
 
 .main-content.active {
@@ -299,6 +340,78 @@ body {
   margin-bottom: 0.3rem;
 }
 
+.notification-float {
+  position: fixed;
+  top: 70px;
+  right: 25px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(255, 0, 242, 0.5);
+  z-index: 1000;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  animation: bellShake 2s infinite; /* Add shaking animation */
+}
+
+.notification-float:hover {
+  animation: none;  /* Stop shaking on hover */
+  transform: scale(1.1); /* Added scaling effect on hover */
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.notification-dropdown {
+  position: fixed;
+  top: 130px;
+  right: 25px;
+  background: rgba(0, 2, 18, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  padding: 15px;
+  width: 280px;
+  display: none;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+}
+
+.notification-dropdown.active {
+  display: block;
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid var(--primary);
+  margin-bottom: 10px;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.notification-title {
+  color: var(--primary);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: 2rem 1rem;
@@ -347,37 +460,47 @@ body {
     line-height: 1.1;
     margin: 6px 0;
   }
+
+  .whatsapp-float {
+    bottom: 120px; /* Move even higher on mobile */
+  }
 }
 
 .whatsapp-float {
   position: fixed;
-  bottom: 80px;  
-  right: 20px;
+  bottom: 100px;  /* Changed from 80px to 100px to move it higher */
+  right: 25px;    /* Slightly adjusted right position */
   background: #25D366;
   color: white;
   border-radius: 50%;  
-  padding: 12px;  
+  padding: 13px;  /* Adjusted padding to match new size */
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); /* Enhanced shadow for visibility */
   z-index: 1000;
+  animation: shake 2s ease-in-out infinite;  /* Added shake animation */
   transition: all 0.3s ease;
-  width: 45px;  
-  height: 45px;  
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+  width: 50px;    /* Made slightly larger */
+  height: 50px;   /* Made slightly larger */
 }
 </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="logo">Tecnonauta</div>
+  <div class="header-content">
+    <div class="logo">Tecnonauta</div>
+    <a href="https://chat.whatsapp.com/HiTwQdsibfYKpbLqmYOs7D" 
+       target="_blank" 
+       class="group-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+      </svg>
+      Grupo
+    </a>
+  </div>
 </header>
 
 <section id="inicio" class="main-content active">
@@ -488,12 +611,13 @@ body {
       <div class="service-icon">💾</div>
       <h3>Servicios y Tarifas</h3>
       <ul>
-        <li>📀 Grabación de memorias: 5 CUP por GB</li>
-        <li>💻 Instalación sistema operativo Windows: 600 CUP</li>
-        <li>🔐 Recuperación de contraseñas Windows (sin reinstalar): 300 CUP</li>
-        <li>📱 FRP cuentas Google: 500 CUP</li>
+        <li>📀 Grabación de memorias: 2cup por ficheros</li>
+        <li>💻 Instalación sistema operativo Windows: 800cup CUP</li>
+        <li>🔐 Recuperación de contraseñas Windows (sin reinstalar): 500cup CUP</li>
+        <li>📱 FRP cuentas Google: 700cup CUP</li>
         <li>🛡️ Instalación Antivirus: 200 CUP</li>
-        <li>📊 Instalación paquete Office: 200 CUP</li>
+        <li>📊 Instalación paquete Office: 300cup CUP</li>
+        <li>📦Paquete Semanal 200CUP</li>
       </ul>
     </div>
   </div>
@@ -533,7 +657,37 @@ body {
   </svg>
 </a>
 
-</section>
+<div class="notification-float" onclick="toggleNotifications()">
+  <div class="notification-badge">2</div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+  </svg>
+</div>
+
+<div class="notification-dropdown">
+  <div class="notification-item">
+    <div class="notification-title">¡Nuevos Precios Hoy !</div>
+    <p>A partir del 4 de noviembre, actualizamos nuestra lista de precios. ¡Consulta las nuevas tarifas! <li>📀 Grabación de memorias: 2cup por ficheros</li>
+        <li>💻 Instalación sistema operativo Windows: 800cup CUP</li>
+        <li>🔐 Recuperación de contraseñas Windows (sin reinstalar): 500cup CUP</li>
+        <li>📱 FRP cuentas Google: 700cup CUP</li>
+        <li>🛡️ Instalación Antivirus: 200 CUP</li>
+        <li>📊 Instalación paquete Office: 300cup CUP</li>
+        <li>📦Paquete Semanal 200CUP</li></p>
+  </div>
+  
+    <div class="notification-item">
+      <div class="notification-title">¡CopyWizard - Nueva Aplicación!</div>
+      <p>¡Monitorea tus grabaciones, genera facturas y controla la capacidad copiada cantiad de ficheros copiados! costo Solo por 50 CUP. 
+        <a href="https://tecnonauta610.github.io/infoQR/" 
+           target="_blank" 
+           style="color: var(--primary); text-decoration: underline; display: block; margin-top: 5px;">
+        Pulsa aquí para obtenerla
+        </a>
+      </p>
+    </div>
+
+</div>
 
 <footer class="footer">
   <nav class="nav-bar">
@@ -591,6 +745,22 @@ function sendEmail() {
       alert('Error al enviar el mensaje: ' + JSON.stringify(error));
     });
 }
+
+// Add to script section
+function toggleNotifications() {
+  const dropdown = document.querySelector('.notification-dropdown');
+  dropdown.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdown = document.querySelector('.notification-dropdown');
+  const notificationFloat = document.querySelector('.notification-float');
+  
+  if (!dropdown.contains(event.target) && !notificationFloat.contains(event.target)) {
+    dropdown.classList.remove('active');
+  }
+});
 
 // Keep the existing navigation function
 </script>
